@@ -2,7 +2,7 @@
 
 
     <header>
-        <h1>تحليل شامل للزيارات الأكاديمية في الجامعات السعودية</h1>
+        <h1>تحليل للزيارات الأكاديمية في الجامعات السعودية</h1>
         <p class="subtitle">تحليل تفصيلي لمشاركات أعضاء هيئة التدريس في زيارات الاعتماد الأكاديمي</p>
     </header>
 
@@ -1407,4 +1407,5 @@ JavaScript
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             populateUniversityTable();
+
         });
