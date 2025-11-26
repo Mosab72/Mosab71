@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليل بيانات الزيارات الأكاديمية للجامعات السعودية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>تحليل شامل للزيارات الأكاديمية في الجامعات السعودية</h1>
+        <p class="subtitle">تحليل تفصيلي لمشاركات أعضاء هيئة التدريس في زيارات الاعتماد الأكاديمي</p>
+    </header>
+
+    <nav class="tab-navigation">
+        <button class="tab-btn active" onclick="showTab('overview')">نظرة عامة</button>
+        <button class="tab-btn" onclick="showTab('universities')">تحليل الجامعات</button>
+        <button class="tab-btn" onclick="showTab('demographics')">تحليل ديموغرافي</button>
+        <button class="tab-btn" onclick="showTab('nationalities')">الجنسيات</button>
+        <button class="tab-btn" onclick="showTab('top-universities')">أكثر الجامعات مشاركة</button>
+    </nav>
+
+    <main class="container">
+        <!-- نظرة عامة -->
+        <section id="overview" class="tab-content active">
+            <h2>نظرة عامة</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏛️</div>
+                    <div class="stat-number">65</div>
+                    <div class="stat-label">إجمالي الجامعات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">1,089</div>
+                    <div class="stat-label">إجمالي المشاركين</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-number">3,871</div>
+                    <div class="stat-label">إجمالي الزيارات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🇸🇦</div>
+                    <div class="stat-number">77.1%</div>
+                    <div class="stat-label">نسبة السعوديين</div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>توزيع الرتب الأكاديمية</h3>
+                    <div class="rank-distribution">
+                        <div class="rank-item">
+                            <span class="rank-label">أستاذ</span>
+                            <div class="rank-bar">
+                                <div class="rank-fill professor" style="width: 26.8%"></div>
+                            </div>
+                            <span class="rank-percent">26.8% (292)</span>
+                        </div>
+                        <div class="rank-item">
+                            <span class="rank-label">أستاذ مشارك</span>
+                            <div class="rank-bar">
+                                <div class="rank-fill associate" style="width: 42.3%"></div>
+                            </div>
+                            <span class="rank-percent">42.3% (461)</span>
+                        </div>
+                        <div class="rank-item">
+                            <span class="rank-label">أستاذ مساعد</span>
+                            <div class="rank-bar">
+                                <div class="rank-fill assistant" style="width: 30.9%"></div>
+                            </div>
+                            <span class="rank-percent">30.9% (336)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>توزيع الجنسيات (أعلى 8 دول)</h3>
+                    <div class="nationality-list">
+                        <div class="nationality-item">
+                            <span class="nat-name">🇸🇦 السعودية</span>
+                            <span class="nat-count">840 (77.1%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇪🇬 مصر</span>
+                            <span class="nat-count">125 (11.5%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇯🇴 الأردن</span>
+                            <span class="nat-count">16 (1.5%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇸🇩 السودان</span>
+                            <span class="nat-count">15 (1.4%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇾🇪 اليمن</span>
+                            <span class="nat-count">8 (0.7%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇹🇳 تونس</span>
+                            <span class="nat-count">7 (0.6%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇺🇸 أمريكا</span>
+                            <span class="nat-count">7 (0.6%)</span>
+                        </div>
+                        <div class="nationality-item">
+                            <span class="nat-name">🇵🇰 باكستان</span>
+                            <span class="nat-count">6 (0.6%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- تحليل الجامعات -->
+        <section id="universities" class="tab-content">
+            <h2>تحليل الجامعات (مرتبة حسب عدد المشاركات)</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>الجامعة</th>
+                            <th>عدد المشاركين</th>
+                            <th>إجمالي الزيارات</th>
+                            <th>متوسط الزيارات/الفرد</th>
+                            <th>أستاذ</th>
+                            <th>أستاذ مشارك</th>
+                            <th>أستاذ مساعد</th>
+                            <th>سعوديين</th>
+                            <th>غير سعوديين</th>
+                        </tr>
+                    </thead>
+                    <tbody id="university-table-body">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- تحليل ديموغرافي -->
+        <section id="demographics" class="tab-content">
+            <h2>التحليل الديموغرافي</h2>
+            
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <h3>توزيع المشاركين حسب الجنسية</h3>
+                    <div class="pie-chart">
+                        <div class="pie-segment saudi" style="--percentage: 77.1"></div>
+                        <div class="pie-center">
+                            <div>840</div>
+                            <small>سعودي</small>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <span class="legend-color saudi"></span>
+                            <span>سعوديين: 840 (77.1%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color non-saudi"></span>
+                            <span>غير سعوديين: 249 (22.9%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>توزيع الزيارات حسب الرتبة الأكاديمية</h3>
+                    <div class="bar-chart-vertical">
+                        <div class="bar-v">
+                            <div class="bar-v-fill professor" style="height: 35%"></div>
+                            <span class="bar-v-label">أستاذ<br>1,354</span>
+                        </div>
+                        <div class="bar-v">
+                            <div class="bar-v-fill associate" style="height: 60%"></div>
+                            <span class="bar-v-label">أستاذ مشارك<br>2,334</span>
+                        </div>
+                        <div class="bar-v">
+                            <div class="bar-v-fill assistant" style="height: 19%"></div>
+                            <span class="bar-v-label">أستاذ مساعد<br>731</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-card full-width">
+                    <h3>مقارنة الرتب الأكاديمية بين السعوديين وغير السعوديين</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>الرتبة</th>
+                                <th>سعوديين</th>
+                                <th>%</th>
+                                <th>غير سعوديين</th>
+                                <th>%</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>أستاذ</td>
+                                <td>232</td>
+                                <td>27.6%</td>
+                                <td>60</td>
+                                <td>24.1%</td>
+                                <td>292</td>
+                            </tr>
+                            <tr>
+                                <td>أستاذ مشارك</td>
+                                <td>353</td>
+                                <td>42.0%</td>
+                                <td>108</td>
+                                <td>43.4%</td>
+                                <td>461</td>
+                            </tr>
+                            <tr>
+                                <td>أستاذ مساعد</td>
+                                <td>255</td>
+                                <td>30.4%</td>
+                                <td>81</td>
+                                <td>32.5%</td>
+                                <td>336</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- الجنسيات -->
+        <section id="nationalities" class="tab-content">
+            <h2>تحليل الجنسيات التفصيلي</h2>
+            <div class="nationality-cards">
+                <div class="nat-card highlight">
+                    <h4>🇸🇦 السعودية</h4>
+                    <p class="nat-big-num">840</p>
+                    <p class="nat-percent">77.1%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 3,023</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇪🇬 مصر</h4>
+                    <p class="nat-big-num">125</p>
+                    <p class="nat-percent">11.5%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 430</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇯🇴 الأردن</h4>
+                    <p class="nat-big-num">16</p>
+                    <p class="nat-percent">1.5%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 97</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇸🇩 السودان</h4>
+                    <p class="nat-big-num">15</p>
+                    <p class="nat-percent">1.4%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 46</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇾🇪 اليمن</h4>
+                    <p class="nat-big-num">8</p>
+                    <p class="nat-percent">0.7%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 17</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇹🇳 تونس</h4>
+                    <p class="nat-big-num">7</p>
+                    <p class="nat-percent">0.6%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 33</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇺🇸 أمريكا</h4>
+                    <p class="nat-big-num">7</p>
+                    <p class="nat-percent">0.6%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 16</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇵🇰 باكستان</h4>
+                    <p class="nat-big-num">6</p>
+                    <p class="nat-percent">0.6%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 43</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇮🇳 الهند</h4>
+                    <p class="nat-big-num">5</p>
+                    <p class="nat-percent">0.5%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 15</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇨🇦 كندا</h4>
+                    <p class="nat-big-num">5</p>
+                    <p class="nat-percent">0.5%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 9</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇩🇿 الجزائر</h4>
+                    <p class="nat-big-num">3</p>
+                    <p class="nat-percent">0.3%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 10</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>🇱🇧 لبنان</h4>
+                    <p class="nat-big-num">2</p>
+                    <p class="nat-percent">0.2%</p>
+                    <div class="nat-details">
+                        <span>الزيارات: 3</span>
+                    </div>
+                </div>
+                <div class="nat-card">
+                    <h4>دول أخرى</h4>
+                    <p class="nat-big-num">50</p>
+                    <p class="nat-percent">4.6%</p>
+                    <div class="nat-details">
+                        <span>تركيا، ماليزيا، فرنسا، إيطاليا، المغرب، بريطانيا، أستراليا، سنغال، سوريا</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- أكثر الجامعات مشاركة -->
+        <section id="top-universities" class="tab-content">
+            <h2>أكثر 20 جامعة مشاركة</h2>
+            <div class="top-universities-list">
+                <div class="top-uni-card gold">
+                    <div class="rank-badge">1</div>
+                    <h3>جامعة الملك سعود - KSU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">109</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">430</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">3.9</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card silver">
+                    <div class="rank-badge">2</div>
+                    <h3>جامعة الأميرة نورة بنت عبدالرحمن - PNU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">83</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">240</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">2.9</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card bronze">
+                    <div class="rank-badge">3</div>
+                    <h3>جامعة الملك عبدالعزيز - KAU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">90</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">349</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">3.9</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">4</div>
+                    <h3>جامعة الإمام محمد بن سعود الإسلامية - IMISIU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">49</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">167</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">3.4</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">5</div>
+                    <h3>جامعة أم القرى - UQU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">47</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">249</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">5.3</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">6</div>
+                    <h3>جامعة القصيم - QU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">42</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">193</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.6</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">7</div>
+                    <h3>جامعة الإمام عبدالرحمن بن فيصل - IAU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">40</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">175</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.4</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">8</div>
+                    <h3>جامعة طيبة - TaibahU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">36</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">71</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">2.0</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">9</div>
+                    <h3>جامعة الطائف - TU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">52</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">87</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">1.7</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-uni-card">
+                    <div class="rank-badge">10</div>
+                    <h3>جامعة الأمير سطام بن عبدالعزيز - PSAU</h3>
+                    <div class="top-uni-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">36</span>
+                            <span class="stat-label">مشارك</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">77</span>
+                            <span class="stat-label">زيارة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">2.1</span>
+                            <span class="stat-label">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">الجامعات من 11-20</h3>
+            <div class="simple-list">
+                <div class="simple-uni">
+                    <span class="uni-rank">11</span>
+                    <span class="uni-name">جامعة نجران - NU</span>
+                    <span class="uni-stat">35 مشارك | 54 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">12</span>
+                    <span class="uni-name">جامعة الملك خالد - KKU</span>
+                    <span class="uni-stat">35 مشارك | 85 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">13</span>
+                    <span class="uni-name">جامعة الإسلامية بالمدينة المنورة - IU</span>
+                    <span class="uni-stat">22 مشارك | 109 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">14</span>
+                    <span class="uni-name">جامعة الملك سعود بن عبدالعزيز للعلوم الصحية - KSAU-HS</span>
+                    <span class="uni-stat">21 مشارك | 63 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">15</span>
+                    <span class="uni-name">جامعة المجمعة - MU</span>
+                    <span class="uni-stat">17 مشارك | 30 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">16</span>
+                    <span class="uni-name">جامعة تبوك - UT</span>
+                    <span class="uni-stat">17 مشارك | 37 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">17</span>
+                    <span class="uni-name">جامعة الملك فهد للبترول والمعادن - KFUPM</span>
+                    <span class="uni-stat">15 مشارك | 62 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">18</span>
+                    <span class="uni-name">جامعة جدة - UJ</span>
+                    <span class="uni-stat">15 مشارك | 23 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">19</span>
+                    <span class="uni-name">جامعة جازان - JazanU</span>
+                    <span class="uni-stat">15 مشارك | 33 زيارة</span>
+                </div>
+                <div class="simple-uni">
+                    <span class="uni-rank">20</span>
+                    <span class="uni-name">جامعة حفر الباطن - UHB</span>
+                    <span class="uni-stat">12 مشارك | 15 زيارة</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>تم إنشاء هذا التحليل بناءً على بيانات الزيارات الأكاديمية للجامعات السعودية</p>
+        <p>© 2025 - تحليل شامل للبيانات الأكاديمية</p>
+    </footer>
+
+    <script>
+        // University data
+        const universities = [
+            {name: "جامعة الملك سعود - KSU", participants: 109, visits: 430, professors: 38, associates: 43, assistants: 28, saudis: 96, nonSaudis: 13},
+            {name: "جامعة الأميرة نورة بنت عبدالرحمن - PNU", participants: 83, visits: 240, professors: 18, associates: 32, assistants: 33, saudis: 75, nonSaudis: 8},
+            {name: "جامعة الملك عبدالعزيز - KAU", participants: 90, visits: 349, professors: 25, associates: 38, assistants: 27, saudis: 83, nonSaudis: 7},
+            {name: "جامعة الإمام محمد بن سعود الإسلامية - IMISIU", participants: 49, visits: 167, professors: 15, associates: 17, assistants: 17, saudis: 48, nonSaudis: 1},
+            {name: "جامعة أم القرى - UQU", participants: 47, visits: 249, professors: 12, associates: 29, assistants: 6, saudis: 45, nonSaudis: 2},
+            {name: "جامعة القصيم - QU", participants: 42, visits: 193, professors: 18, associates: 15, assistants: 9, saudis: 39, nonSaudis: 3},
+            {name: "جامعة الإمام عبدالرحمن بن فيصل - IAU", participants: 40, visits: 175, professors: 5, associates: 24, assistants: 11, saudis: 34, nonSaudis: 6},
+            {name: "جامعة طيبة - TaibahU", participants: 36, visits: 71, professors: 6, associates: 12, assistants: 18, saudis: 32, nonSaudis: 4},
+            {name: "جامعة الطائف - TU", participants: 52, visits: 87, professors: 9, associates: 25, assistants: 18, saudis: 50, nonSaudis: 2},
+            {name: "جامعة الأمير سطام بن عبدالعزيز - PSAU", participants: 36, visits: 77, professors: 8, associates: 13, assistants: 15, saudis: 33, nonSaudis: 3},
+            {name: "جامعة نجران - NU", participants: 35, visits: 54, professors: 4, associates: 14, assistants: 17, saudis: 32, nonSaudis: 3},
+            {name: "جامعة الملك خالد - KKU", participants: 35, visits: 85, professors: 10, associates: 14, assistants: 11, saudis: 32, nonSaudis: 3},
+            {name: "جامعة الإسلامية بالمدينة المنورة - IU", participants: 22, visits: 109, professors: 10, associates: 9, assistants: 3, saudis: 22, nonSaudis: 0},
+            {name: "جامعة الملك سعود بن عبدالعزيز للعلوم الصحية - KSAU-HS", participants: 21, visits: 63, professors: 2, associates: 7, assistants: 12, saudis: 20, nonSaudis: 1},
+            {name: "جامعة المجمعة - MU", participants: 17, visits: 30, professors: 3, associates: 11, assistants: 3, saudis: 16, nonSaudis: 1},
+            {name: "جامعة تبوك - UT", participants: 17, visits: 37, professors: 2, associates: 6, assistants: 9, saudis: 15, nonSaudis: 2},
+            {name: "جامعة الملك فهد للبترول والمعادن - KFUPM", participants: 15, visits: 62, professors: 8, associates: 5, assistants: 2, saudis: 10, nonSaudis: 5},
+            {name: "جامعة جدة - UJ", participants: 15, visits: 23, professors: 3, associates: 7, assistants: 5, saudis: 13, nonSaudis: 2},
+            {name: "جامعة جازان - JazanU", participants: 15, visits: 33, professors: 5, associates: 7, assistants: 3, saudis: 13, nonSaudis: 2},
+            {name: "جامعة حفر الباطن - UHB", participants: 12, visits: 15, professors: 1, associates: 2, assistants: 9, saudis: 9, nonSaudis: 3},
+            {name: "جامعة الباحة - BU", participants: 10, visits: 27, professors: 1, associates: 9, assistants: 0, saudis: 10, nonSaudis: 0},
+            {name: "جامعة بيشة - UB", participants: 8, visits: 18, professors: 2, associates: 5, assistants: 1, saudis: 7, nonSaudis: 1},
+            {name: "جامعة شقراء - SU", participants: 15, visits: 26, professors: 2, associates: 9, assistants: 4, saudis: 14, nonSaudis: 1},
+            {name: "جامعة الحدود الشمالية - NBU", participants: 14, visits: 23, professors: 3, associates: 3, assistants: 8, saudis: 10, nonSaudis: 4},
+            {name: "جامعة حائل - UOH", participants: 9, visits: 17, professors: 1, associates: 7, assistants: 1, saudis: 8, nonSaudis: 1},
+            {name: "جامعة الجوف - JU", participants: 14, visits: 21, professors: 1, associates: 8, assistants: 5, saudis: 11, nonSaudis: 3},
+            {name: "كليات الأصالة - Alasala", participants: 2, visits: 13, professors: 1, associates: 1, assistants: 0, saudis: 0, nonSaudis: 2},
+            {name: "جامعة الأمير سلطان - PSU", participants: 10, visits: 25, professors: 3, associates: 1, assistants: 6, saudis: 2, nonSaudis: 8},
+            {name: "كلية الأمير سلطان العسكرية للعلوم الصحية - PSMCHS", participants: 6, visits: 31, professors: 0, associates: 3, assistants: 3, saudis: 5, nonSaudis: 1},
+            {name: "جامعة نايف العربية للعلوم الأمنية - NAUSS", participants: 4, visits: 14, professors: 1, associates: 1, assistants: 2, saudis: 1, nonSaudis: 3},
+            {name: "كلية ابن سينا الأهلية للعلوم الطبية - IBNSINA", participants: 3, visits: 10, professors: 0, associates: 1, assistants: 2, saudis: 1, nonSaudis: 2},
+            {name: "جامعة دار العلوم - DAU", participants: 3, visits: 22, professors: 0, associates: 1, assistants: 2, saudis: 0, nonSaudis: 3},
+            {name: "كلية فقيه للعلوم الطبية - FCMS", participants: 10, visits: 11, professors: 0, associates: 2, assistants: 8, saudis: 9, nonSaudis: 1},
+            {name: "جامعة الملك فيصل - KFU", participants: 7, visits: 11, professors: 2, associates: 3, assistants: 2, saudis: 6, nonSaudis: 1},
+            {name: "جامعة الفيصل - Alfaisal", participants: 5, visits: 19, professors: 1, associates: 3, assistants: 1, saudis: 3, nonSaudis: 2},
+            {name: "كلية جدة العالمية - JIC", participants: 4, visits: 5, professors: 0, associates: 1, assistants: 3, saudis: 2, nonSaudis: 2},
+            {name: "كليات الشرق العربي - ArabEast", participants: 2, visits: 7, professors: 0, associates: 2, assistants: 0, saudis: 1, nonSaudis: 1},
+            {name: "جامعة الأعمال والتكنولوجيا - UBT", participants: 7, visits: 25, professors: 1, associates: 1, assistants: 5, saudis: 5, nonSaudis: 2},
+            {name: "كلية البترجي الطبية - BMC", participants: 4, visits: 5, professors: 0, associates: 1, assistants: 3, saudis: 3, nonSaudis: 1},
+            {name: "جامعة الأمير محمد بن فهد - PMU", participants: 3, visits: 10, professors: 0, associates: 0, assistants: 3, saudis: 1, nonSaudis: 2},
+            {name: "كلية ينبع الصناعية", participants: 3, visits: 6, professors: 0, associates: 3, assistants: 0, saudis: 3, nonSaudis: 0},
+            {name: "جامعة المعرفة - MCST", participants: 5, visits: 6, professors: 1, associates: 1, assistants: 3, saudis: 2, nonSaudis: 3},
+            {name: "كليات عنيزة - OC", participants: 4, visits: 6, professors: 0, associates: 1, assistants: 3, saudis: 2, nonSaudis: 2},
+            {name: "جامعة عفت - EFFAT", participants: 2, visits: 6, professors: 0, associates: 1, assistants: 1, saudis: 0, nonSaudis: 2},
+            {name: "الجامعة السعودية الإلكترونية - SEU", participants: 3, visits: 4, professors: 0, associates: 0, assistants: 3, saudis: 3, nonSaudis: 0},
+            {name: "الجامعة العربية المفتوحة", participants: 2, visits: 5, professors: 1, associates: 1, assistants: 0, saudis: 0, nonSaudis: 2},
+            {name: "جامعة رياض العلم - REU", participants: 1, visits: 2, professors: 0, associates: 1, assistants: 0, saudis: 1, nonSaudis: 0},
+            {name: "المؤسسة العامة للتدريب التقني والمهني", participants: 1, visits: 2, professors: 1, associates: 0, assistants: 0, saudis: 1, nonSaudis: 0},
+            {name: "جامعة الأمير مقرن بن عبدالعزيز - UPM", participants: 2, visits: 2, professors: 0, associates: 0, assistants: 2, saudis: 0, nonSaudis: 2},
+            {name: "كليات الريان الأهلية - AMC", participants: 1, visits: 1, professors: 0, associates: 0, assistants: 1, saudis: 1, nonSaudis: 0},
+            {name: "جامعة سليمان الراجحي - SR", participants: 1, visits: 5, professors: 0, associates: 0, assistants: 1, saudis: 1, nonSaudis: 0},
+            {name: "جامعة الجبيل الصناعية", participants: 2, visits: 3, professors: 0, associates: 1, assistants: 1, saudis: 1, nonSaudis: 1},
+            {name: "جامعة فهد بن سلطان", participants: 2, visits: 2, professors: 0, associates: 0, assistants: 2, saudis: 2, nonSaudis: 0},
+            {name: "جامعة نايف العربية للعلوم الأمنية", participants: 1, visits: 3, professors: 1, associates: 0, assistants: 0, saudis: 1, nonSaudis: 0},
+            {name: "كليات بريدة الأهلية", participants: 1, visits: 1, professors: 0, associates: 0, assistants: 1, saudis: 1, nonSaudis: 0}
+        ];
+
+        // Tab switching function
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Populate university table
+        function populateUniversityTable() {
+            const tbody = document.getElementById('university-table-body');
+            universities.forEach((uni, index) => {
+                const avg = (uni.visits / uni.participants).toFixed(1);
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td class="uni-name-cell">${uni.name}</td>
+                        <td>${uni.participants}</td>
+                        <td><strong>${uni.visits}</strong></td>
+                        <td>${avg}</td>
+                        <td>${uni.professors}</td>
+                        <td>${uni.associates}</td>
+                        <td>${uni.assistants}</td>
+                        <td>${uni.saudis}</td>
+                        <td>${uni.nonSaudis}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            populateUniversityTable();
+        });
+    </script>
+</body>
+</html>
